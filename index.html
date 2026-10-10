@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twasal Zahra | Creative & Tech Specialist</title>
+
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+
+    <!-- EFFECTS: Marquee + Custom Cursor + Neon Glow -->
+    <style>
+        :root {
+            --neon: #00e5ff;
+            --neon-soft: rgba(0, 229, 255, 0.35);
+        }
+
+        /* ---------- 1. MARQUEE (light theme ke liye theek kiya) ---------- */
+        .marquee-section {
+            padding: 30px 0;
+            border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+            overflow: hidden;
+            position: relative;
+        }
+        .marquee-section::before,
+        .marquee-section::after {
+            content: "";
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 120px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .marquee-section::before { left: 0;  background: linear-gradient(to right, #f8fafc, transparent); }
+        .marquee-section::after  { right: 0; background: linear-gradient(to left,  #f8fafc, transparent); }
+
+        .marquee-row { display: flex; width: max-content; margin: 10px 0; }
+        .marquee-track {
+            display: flex;
+            gap: 18px;
+            padding-right: 18px;
+            animation: marquee-left 30s linear infinite;
+        }
+        .marquee-row.reverse .marquee-track { animation-name: marquee-right; animation-duration: 36s; }
+        .marquee-section:hover .marquee-track { animation-play-state: paused; }
+
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 22px;
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            border-radius: 50px;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            background: #ffffff;
+            transition: 0.3s;
+        }
+        .marquee-item i { color: var(--primary-blue); }
+        .marquee-item:hover {
+            box-shadow: 0 0 18px var(--neon-soft);
+            border-color: var(--primary-blue);
+        }
+        @keyframes marquee-left  { from { transform: translateX(0); }     to { transform: translateX(-100%); } }
+        @keyframes marquee-right { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+
+        /* ---------- 2. CUSTOM CURSOR ---------- */
+        @media (hover: hover) and (pointer: fine) {
+            body, a, button, .tab-btn, .filter-btn, .faq-question, .view-btn { cursor: none; }
+
+            .cursor-dot, .cursor-ring {
+                position: fixed;
+                top: 0; left: 0;
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 99999;
+                transform: translate(-50%, -50%);
+            }
+            .cursor-dot {
+                width: 8px; height: 8px;
+                background: var(--primary-blue);
+                box-shadow: 0 0 12px var(--neon), 0 0 24px var(--neon);
+            }
+            .cursor-ring {
+                width: 40px; height: 40px;
+                border: 2px solid var(--primary-blue);
+                box-shadow: 0 0 15px var(--neon-soft), inset 0 0 10px var(--neon-soft);
+                transition: width 0.25s, height 0.25s, background 0.25s;
+            }
+            .cursor-ring.hover {
+                width: 66px; height: 66px;
+                background: rgba(37, 99, 235, 0.10);
+            }
+        }
+        @media (hover: none), (pointer: coarse) {
+            .cursor-dot, .cursor-ring { display: none; }
+        }
+
+        /* ---------- 3. NEON GLOW ---------- */
+        .btn-primary, .nav-btn-glow {
+            box-shadow: 0 0 18px var(--neon-soft);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .btn-primary:hover, .nav-btn-glow:hover {
+            box-shadow: 0 0 28px var(--neon), 0 0 60px var(--neon-soft);
+            transform: translateY(-2px);
+        }
+
+        .glass-card { transition: box-shadow 0.35s, border-color 0.35s, transform 0.35s; }
+        .glass-card:hover {
+            border-color: var(--neon);
+            box-shadow: 0 0 22px var(--neon-soft), 0 0 45px rgba(0,229,255,0.12);
+        }
+
+        .progress-bar { box-shadow: 0 0 12px var(--neon-soft); }
+        .profile-frame { box-shadow: 0 0 35px var(--neon-soft); }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <div id="scroll-progress"></div>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <a href="#home" class="logo">&lt;Twasal <span>Zahra/&gt;</span></a>
+        <nav class="navbar" id="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Journey</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="header-btns">
+            <a href="#contact" class="nav-btn-glow"><i class="fas fa-paper-plane"></i> Let's Talk</a>
+            <div id="menu-btn" class="menu-btn"><i class="fas fa-bars-staggered"></i></div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                <div class="hero-badge"><i class="fas fa-wand-magic-sparkles"></i> Open for Projects & Full-Time Roles</div>
+                <h1>Hi, I'm <span class="gradient-text">Twasal Zahra</span></h1>
+                <h2 class="hero-subtitle">Specialized in <span id="typed-text"></span></h2>
+                <p>ICS Graduate with 2+ years of professional mastery in Web Development, Custom PHP Systems, UI/UX Design, Professional Video Editing, and Corporate Office Management.</p>
+
+                <div class="cta-group">
+                    <a href="#projects" class="btn btn-primary"><i class="fas fa-briefcase"></i> View Portfolio</a>
+                    <a href="Twasal_Zahra_CV.docx" download class="btn btn-glass"><i class="fas fa-download"></i> Download CV</a>
+                    <a href="https://wa.me/923087297192" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Quick Chat</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item"><h3>2+</h3><p>Years Experience</p></div>
+                    <div class="stat-item"><h3>25+</h3><p>Projects Completed</p></div>
+                    <div class="stat-item"><h3>100%</h3><p>Client Satisfaction</p></div>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="profile-glow"></div>
+                <div class="profile-frame">
+                    <img src="pic.jpg" alt="Twasal Zahra" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop'">
+                </div>
+
+                <div class="floating-badge badge-1" data-aos="zoom-in" data-aos-delay="500">
+                    <i class="fas fa-code"></i>
+                    <div><h4>Web Developer</h4><p>HTML / CSS / JS / PHP</p></div>
+                </div>
+                <div class="floating-badge badge-2" data-aos="zoom-in" data-aos-delay="700">
+                    <i class="fas fa-palette"></i>
+                    <div><h4>Creative UI & Video</h4><p>Editing & Content</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOVING SKILLS MARQUEE -->
+    <section class="marquee-section" aria-label="Skills and tools">
+        <div class="marquee-row">
+            <div class="marquee-track">
+                <span class="marquee-item"><i class="fab fa-html5"></i> HTML5</span>
+                <span class="marquee-item"><i class="fab fa-css3-alt"></i> CSS3</span>
+                <span class="marquee-item"><i class="fab fa-js"></i> JavaScript</span>
+                <span class="marquee-item"><i class="fab fa-php"></i> PHP</span>
+                <span class="marquee-item"><i class="fas fa-database"></i> MySQL</span>
+                <span class="marquee-item"><i class="fab fa-git-alt"></i> Git</span>
+                <span class="marquee-item"><i class="fab fa-github"></i> GitHub</span>
+                <span class="marquee-item"><i class="fab fa-figma"></i> Figma</span>
+            </div>
+            <div class="marquee-track" aria-hidden="true">
+                <span class="marquee-item"><i class="fab fa-html5"></i> HTML5</span>
+                <span class="marquee-item"><i class="fab fa-css3-alt"></i> CSS3</span>
+                <span class="marquee-item"><i class="fab fa-js"></i> JavaScript</span>
+                <span class="marquee-item"><i class="fab fa-php"></i> PHP</span>
+                <span class="marquee-item"><i class="fas fa-database"></i> MySQL</span>
+                <span class="marquee-item"><i class="fab fa-git-alt"></i> Git</span>
+                <span class="marquee-item"><i class="fab fa-github"></i> GitHub</span>
+                <span class="marquee-item"><i class="fab fa-figma"></i> Figma</span>
+            </div>
+        </div>
+
+        <div class="marquee-row reverse">
+            <div class="marquee-track">
+                <span class="marquee-item"><i class="fas fa-mobile-screen"></i> Responsive Design</span>
+                <span class="marquee-item"><i class="fas fa-crop-simple"></i> UI/UX Design</span>
+                <span class="marquee-item"><i class="fas fa-film"></i> Video Editing</span>
+                <span class="marquee-item"><i class="fas fa-wand-magic-sparkles"></i> Custom Animations</span>
+                <span class="marquee-item"><i class="fab fa-whatsapp"></i> WhatsApp Integration</span>
+                <span class="marquee-item"><i class="fas fa-pen-nib"></i> Content Creation</span>
+                <span class="marquee-item"><i class="fas fa-file-excel"></i> MS Office</span>
+                <span class="marquee-item"><i class="fas fa-building-user"></i> Office Management</span>
+            </div>
+            <div class="marquee-track" aria-hidden="true">
+                <span class="marquee-item"><i class="fas fa-mobile-screen"></i> Responsive Design</span>
+                <span class="marquee-item"><i class="fas fa-crop-simple"></i> UI/UX Design</span>
+                <span class="marquee-item"><i class="fas fa-film"></i> Video Editing</span>
+                <span class="marquee-item"><i class="fas fa-wand-magic-sparkles"></i> Custom Animations</span>
+                <span class="marquee-item"><i class="fab fa-whatsapp"></i> WhatsApp Integration</span>
+                <span class="marquee-item"><i class="fas fa-pen-nib"></i> Content Creation</span>
+                <span class="marquee-item"><i class="fas fa-file-excel"></i> MS Office</span>
+                <span class="marquee-item"><i class="fas fa-building-user"></i> Office Management</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about">
+        <div class="section-header" data-aos="fade-up">
+            <p class="subtitle">GET TO KNOW ME</p>
+            <h2 class="title">Blending Analytical Logic with <span class="gradient-text">Creative Vision</span></h2>
+        </div>
+
+        <div class="about-wrapper">
+            <div class="about-tabs" data-aos="fade-up" data-aos-delay="100">
+                <button class="tab-btn active" onclick="openAboutTab('bio', this)"><i class="fas fa-user"></i> Bio & Overview</button>
+                <button class="tab-btn" onclick="openAboutTab('values', this)"><i class="fas fa-star"></i> Core Values</button>
+                <button class="tab-btn" onclick="openAboutTab('tools', this)"><i class="fas fa-screwdriver-wrench"></i> Tech Stack</button>
+            </div>
+
+            <div id="tab-bio" class="tab-content glass-card active" data-aos="fade-up" data-aos-delay="200">
+                <h3>Passionate Developer & Multidisciplinary Specialist</h3>
+                <p>ICS Graduate with hands-on experience in Web Development, PHP Backend, UI/UX Design, Video Editing, and Office Management.</p>
+                <div class="bio-details-grid">
+                    <div class="detail-box"><i class="fas fa-graduation-cap"></i> <strong>Education:</strong> ICS Graduate</div>
+                    <div class="detail-box"><i class="fas fa-briefcase"></i> <strong>Experience:</strong> 2+ Years Professional</div>
+                    <div class="detail-box"><i class="fas fa-check-circle"></i> <strong>Status:</strong> Available for Projects</div>
+                    <div class="detail-box"><i class="fas fa-globe"></i> <strong>Languages:</strong> English, Urdu</div>
+                </div>
+            </div>
+
+            <div id="tab-values" class="tab-content glass-card" style="display: none;">
+                <h3>My Core Professional Principles</h3>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div><h4>Precision & Quality Code</h4><p>Every website or program is written with clean, modular, and optimized standards.</p></div>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-wand-magic-sparkles"></i>
+                        <div><h4>Aesthetic Excellence</h4><p>Designing modern user experiences with high visual polish and smooth animations.</p></div>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-clock"></i>
+                        <div><h4>Timely Execution</h4><p>Managing tasks efficiently to consistently meet project deadlines and milestones.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-tools" class="tab-content glass-card" style="display: none;">
+                <h3>Preferred Tools & Tech Stack</h3>
+                <div class="tools-tags">
+                    <span><i class="fab fa-html5"></i> HTML5</span>
+                    <span><i class="fab fa-css3-alt"></i> CSS3</span>
+                    <span><i class="fab fa-js"></i> JavaScript ES6+</span>
+                    <span><i class="fab fa-php"></i> PHP & MySQL</span>
+                    <span><i class="fas fa-video"></i> Video Editing Tools</span>
+                    <span><i class="fab fa-figma"></i> UI Design</span>
+                    <span><i class="fas fa-file-excel"></i> MS Office Suite</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="services">
+        <div class="section-header" data-aos="fade-up">
+            <p class="subtitle">WHAT I OFFER</p>
+            <h2 class="title">Professional <span class="gradient-text">Services & Solutions</span></h2>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Web Development</h3>
+                <p>Custom responsive websites built using modern HTML5, CSS3, JavaScript, and dynamic PHP systems.</p>
+            </div>
+            <div class="service-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-icon"><i class="fas fa-crop-simple"></i></div>
+                <h3>UI/UX & Graphic Design</h3>
+                <p>Clean, user-friendly digital interface designs, social media graphics, posters, and branding assets.</p>
+            </div>
+            <div class="service-card glass-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-icon"><i class="fas fa-film"></i></div>
+                <h3>Video Editing</h3>
+                <p>High-quality video post-production, cuts, color grading, visual effects, motion graphics, and reels.</p>
+            </div>
+            <div class="service-card glass-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-icon"><i class="fas fa-database"></i></div>
+                <h3>PHP & Database Systems</h3>
+                <p>Building functional web applications, customer portals, and database integration using MySQL.</p>
+            </div>
+            <div class="service-card glass-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="service-icon"><i class="fas fa-pen-nib"></i></div>
+                <h3>Content Creation</h3>
+                <p>Engaging digital content strategy, copywriting, and media production tailored for online platforms.</p>
+            </div>
+            <div class="service-card glass-card" data-aos="fade-up" data-aos-delay="600">
+                <div class="service-icon"><i class="fas fa-building-user"></i></div>
+                <h3>Office Management</h3>
+                <p>Professional administrative oversight, record keeping, task coordination, and operation workflows.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="skills">
+        <div class="section-header" data-aos="fade-up">
+            <p class="subtitle">TECHNICAL COMPETENCE</p>
+            <h2 class="title">Skill Proficiency & <span class="gradient-text">Level</span></h2>
+        </div>
+
+        <div class="skills-wrapper">
+            <div class="skills-category glass-card" data-aos="fade-right" data-aos-delay="100">
+                <h3><i class="fas fa-code"></i> Programming & Web Stack</h3>
+                <div class="skill-bar-box">
+                    <div class="info"><span>HTML5 / CSS3 / Responsive Layouts</span> <span>95%</span></div>
+                    <div class="skill-bar-bg"><div class="progress-bar" style="width: 95%;"></div></div>
+                </div>
+                <div class="skill-bar-box">
+                    <div class="info"><span>JavaScript (Interactive UI Logic)</span> <span>85%</span></div>
+                    <div class="skill-bar-bg"><div class="progress-bar" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill-bar-box">
+                    <div class="info"><span>PHP & MySQL Backend</span> <span>80%</span></div>
+                    <div class="skill-bar-bg"><div class="progress-bar" style="width: 80%;"></div></div>
+                </div>
+                <div class="skill-bar-box">
+                    <div class="info"><span>C++ & Java Core Logic</span> <span>75%</span></div>
+                    <div class="skill-bar-bg"><div class="progress-bar" style="width: 75%;"></div></div>
+                </div>
+            </div>
+
+            <div class="skills-category glass-card" data-aos="fade-left" data-aos-delay="200">
+                <h3><i class="fas fa-photo-film"></i> Creative Media & Management</h3>
+                <div class="skill-bar-box">
+                    <div class="info"><span>UI/UX & Graphic Design</span> <span>90%</span></div>
+                    <div class="skill-bar-bg"><div class="progress-bar" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill-bar-box">
+                    <div class="info"><span>Video Editing & Post Production</span> <span>88%</span></div>
+                    <div class="skill-bar-bg"><div class="progress-bar" style="width: 88%;"></div></div>
+                </div>
+                <div class="skill-bar-box">
+                    <div class="info"><span>Content Strategy</span> <span>85%</span></div>
+                    <div class="skill-bar-bg"><div class="progress-bar" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill-bar-box">
+                    <div class="info"><span>Office Management & Documentation</span> <span>92%</span></div>
+                    <div class="skill-bar-bg"><div class="progress-bar" style="width: 92%;"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="projects">
+        <div class="section-header" data-aos="fade-up">
+            <p class="subtitle">PORTFOLIO</p>
+            <h2 class="title">Featured Work & <span class="gradient-text">Projects</span></h2>
+        </div>
+
+        <div class="filter-buttons" data-aos="fade-up" data-aos-delay="100">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="web">Web Development</button>
+            <button class="filter-btn" data-filter="design">UI & Graphics</button>
+            <button class="filter-btn" data-filter="media">Video & Office</button>
+        </div>
+
+        <div class="projects-grid">
+
+            <!-- 1. E-Commerce -->
+            <div class="project-card glass-card" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-img-wrapper web-bg">
+                    <img class="project-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" alt="Dynamic E-Commerce System" loading="lazy" onerror="this.style.display='none'">
+                    <span class="img-badge"><i class="fas fa-laptop-code"></i> Web System</span>
+                </div>
+                <div class="project-details">
+                    <div>
+                        <span class="p-tag">PHP / MySQL / JS</span>
+                        <h3>Dynamic E-Commerce System</h3>
+                        <p>Interactive web store featuring custom shopping carts, PHP backend, and dynamic MySQL database integration.</p>
+                    </div>
+                    <a href="javascript:void(0)" class="view-btn" onclick="openModal('ecommerce')">View Full Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- 2. Analytics UI -->
+            <div class="project-card glass-card" data-category="design" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-img-wrapper design-bg">
+                    <img class="project-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Analytics Admin UI" loading="lazy" onerror="this.style.display='none'">
+                    <span class="img-badge"><i class="fas fa-crop-simple"></i> UI/UX Design</span>
+                </div>
+                <div class="project-details">
+                    <div>
+                        <span class="p-tag">Glassmorphism Dashboard</span>
+                        <h3>Analytics Admin UI</h3>
+                        <p>Modern dark-themed analytics dashboard interface with glowing neon accents and responsive sidebar navigation.</p>
+                    </div>
+                    <a href="javascript:void(0)" class="view-btn" onclick="openModal('dashboard')">View Full Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- 3. Student Record Engine -->
+            <div class="project-card glass-card" data-category="web" data-aos="fade-up" data-aos-delay="300">
+                <div class="project-img-wrapper cpp-bg">
+                    <img class="project-img" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Student Record Engine" loading="lazy" onerror="this.style.display='none'">
+                    <span class="img-badge"><i class="fas fa-terminal"></i> C++ / Java Logic</span>
+                </div>
+                <div class="project-details">
+                    <div>
+                        <span class="p-tag">Software System</span>
+                        <h3>Student Record Engine</h3>
+                        <p>Console-driven student management application demonstrating OOP concepts, file handling, and database connection.</p>
+                    </div>
+                    <a href="javascript:void(0)" class="view-btn" onclick="openModal('student')">View Full Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- 4. Video -->
+            <div class="project-card glass-card" data-category="media" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-img-wrapper media-bg">
+                    <img class="project-img" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80" alt="Commercial Promo Video" loading="lazy" onerror="this.style.display='none'">
+                    <span class="img-badge"><i class="fas fa-film"></i> Video Editing</span>
+                </div>
+                <div class="project-details">
+                    <div>
+                        <span class="p-tag">Video Production</span>
+                        <h3>Commercial Promo Video</h3>
+                        <p>High-energy promotional video edited with dynamic audio sync, color grading, motion graphics, and visual effects.</p>
+                    </div>
+                    <a href="javascript:void(0)" class="view-btn" onclick="openModal('video')">View Full Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- 5. Office -->
+            <div class="project-card glass-card" data-category="media" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-img-wrapper office-bg">
+                    <img class="project-img" src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=800&q=80" alt="Corporate Operational Workflow" loading="lazy" onerror="this.style.display='none'">
+                    <span class="img-badge"><i class="fas fa-building-user"></i> Office Management</span>
+                </div>
+                <div class="project-details">
+                    <div>
+                        <span class="p-tag">Administration</span>
+                        <h3>Corporate Operational Workflow</h3>
+                        <p>Digital administrative management framework designed for tracking staff records, tasks, and office logistics.</p>
+                    </div>
+                    <a href="javascript:void(0)" class="view-btn" onclick="openModal('office')">View Full Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- 6. Branding -->
+            <div class="project-card glass-card" data-category="design" data-aos="fade-up" data-aos-delay="300">
+                <div class="project-img-wrapper design-bg">
+                    <img class="project-img" src="https://images.unsplash.com/photo-1561070791-2526d30994b8?auto=format&fit=crop&w=800&q=80" alt="Social Media Branding Pack" loading="lazy" onerror="this.style.display='none'">
+                    <span class="img-badge"><i class="fas fa-pen-nib"></i> Graphic Design</span>
+                </div>
+                <div class="project-details">
+                    <div>
+                        <span class="p-tag">Graphic Design</span>
+                        <h3>Social Media Branding Pack</h3>
+                        <p>Complete visual branding identity kit including custom logos, promotional post graphics, banners, and flyers.</p>
+                    </div>
+                    <a href="javascript:void(0)" class="view-btn" onclick="openModal('branding')">View Full Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="experience">
+        <div class="section-header" data-aos="fade-up">
+            <p class="subtitle">TIMELINE</p>
+            <h2 class="title">Education & <span class="gradient-text">Experience</span></h2>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item glass-card" data-aos="fade-right" data-aos-delay="100">
+                <span class="timeline-date"><i class="fas fa-calendar-alt"></i> 2024 - Present (2 Years)</span>
+                <h3>Tech Specialist & Content Developer</h3>
+                <h4>Professional & Freelance Practice</h4>
+                <p>Building responsive web solutions, crafting UI designs, editing promotional videos, and managing office workflows.</p>
+            </div>
+            <div class="timeline-item glass-card" data-aos="fade-left" data-aos-delay="200">
+                <span class="timeline-date"><i class="fas fa-graduation-cap"></i> Academic Qualification</span>
+                <h3>Intermediate in Computer Science (ICS)</h3>
+                <h4>Computer Science Board Education</h4>
+                <p>Acquired strong technical knowledge in computer programming fundamentals, logic building, and database design.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="section-header" data-aos="fade-up">
+            <p class="subtitle">QUESTIONS</p>
+            <h2 class="title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item glass-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="faq-question"><h3>What services can I hire you for?</h3><i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer"><p>You can hire me for Web Development (HTML/CSS/JS/PHP), UI/UX Design, Professional Video Editing, Graphic Design, and Office Administration.</p></div>
+            </div>
+            <div class="faq-item glass-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="faq-question"><h3>What is your educational background?</h3><i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer"><p>I have completed my Intermediate in Computer Science (ICS), providing me with strong fundamentals in IT and software creation.</p></div>
+            </div>
+            <div class="faq-item glass-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="faq-question"><h3>Are you available for freelance projects or full-time roles?</h3><i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer"><p>Yes! I am available for both remote freelance projects and full-time employment opportunities globally.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+        <div class="section-header" data-aos="fade-up">
+            <p class="subtitle">GET IN TOUCH</p>
+            <h2 class="title">Let's Build Something <span class="gradient-text">Extraordinary</span></h2>
+        </div>
+
+        <div class="contact-wrapper">
+            <div class="contact-info-boxes" data-aos="fade-right" data-aos-delay="100">
+                <div class="contact-info-card glass-card">
+                    <div class="c-icon"><i class="fas fa-envelope"></i></div>
+                    <div><h4>Email Me:</h4><p><a href="mailto:twasalzahra@gmail.com">twasalzahra@gmail.com</a></p></div>
+                </div>
+                <div class="contact-info-card glass-card">
+                    <div class="c-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div><h4>Direct WhatsApp:</h4><p><a href="https://wa.me/923087297192" target="_blank" class="wa-link">+92 3087297192 (Click to Chat)</a></p></div>
+                </div>
+                <div class="contact-info-card glass-card">
+                    <div class="c-icon"><i class="fas fa-location-dot"></i></div>
+                    <div><h4>Location:</h4><p>Pakistan (Available Globally)</p></div>
+                </div>
+                <div class="social-links-card glass-card">
+                    <h4>Follow & Connect:</h4>
+                    <div class="social-icons">
+                        <a href="#" class="s-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/twasalzahra1-bot" target="_blank" class="s-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="s-icon" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                        <a href="https://wa.me/923087297192" target="_blank" class="s-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-card glass-card" data-aos="fade-left" data-aos-delay="200">
+                <h3>Send Me a Message</h3>
+                <form id="contact-form">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <input type="text" id="name" name="name" required placeholder=" ">
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="email" name="email" required placeholder=" ">
+                            <label for="email">Your Email</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="subject" name="subject" required placeholder=" ">
+                        <label for="subject">Subject</label>
+                    </div>
+                    <div class="input-group">
+                        <textarea id="message" name="message" rows="4" required placeholder=" "></textarea>
+                        <label for="message">Your Message...</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Send Message Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content glass-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">Project Title</h3>
+            <p id="modal-details">Project Details...</p>
+        </div>
+    </div>
+
+    <a href="#home" id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="#home" class="logo">&lt;Twasal <span>Zahra/&gt;</span></a>
+                <p>ICS Graduate & Multidisciplinary Specialist with 2+ years of hands-on experience in Web Development, PHP Backend, UI/UX Design, Video Editing, and Corporate Management.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/twasalzahra1-bot" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                    <a href="https://wa.me/923087297192" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About Me</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="#projects"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-services">
+                <h4>Services Offered</h4>
+                <ul>
+                    <li><a href="#services"><i class="fas fa-check"></i> Web Development</a></li>
+                    <li><a href="#services"><i class="fas fa-check"></i> Custom PHP Systems</a></li>
+                    <li><a href="#services"><i class="fas fa-check"></i> UI/UX Design</a></li>
+                    <li><a href="#services"><i class="fas fa-check"></i> Video Editing</a></li>
+                    <li><a href="#services"><i class="fas fa-check"></i> Office Administration</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Details</h4>
+                <p><i class="fas fa-envelope"></i> twasalzahra@gmail.com</p>
+                <p><i class="fab fa-whatsapp"></i> +92 3087297192</p>
+                <p><i class="fas fa-location-dot"></i> Pakistan (Remote Available)</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 <strong>Twasal Zahra</strong>. All Rights Reserved. Designed & Developed with Passion.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init({ duration: 900, easing: 'ease-in-out', once: true, offset: 80 });
+
+        new Typed('#typed-text', {
+            strings: ['Web Development', 'PHP & MySQL Backend', 'UI/UX & Graphic Design', 'Video Editing & Production', 'Office Administration'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            loop: true
+        });
+
+        // ===== MOBILE MENU =====
+        const navbar = document.getElementById('navbar');
+        document.getElementById('menu-btn').addEventListener('click', () => {
+            navbar.classList.toggle('open');
+        });
+        navbar.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navbar.classList.remove('open'));
+        });
+
+        // ===== ABOUT TABS =====
+        function openAboutTab(tabName, btn) {
+            document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + tabName).style.display = 'block';
+            btn.classList.add('active');
+        }
+
+        // ===== FAQ =====
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                faqItems.forEach(i => { if (i !== item) i.classList.remove('active'); });
+                item.classList.toggle('active');
+            });
+        });
+
+        // ===== PROJECT FILTER =====
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+                projectCards.forEach(card => {
+                    card.style.display = (filter === 'all' || card.getAttribute('data-category') === filter) ? 'flex' : 'none';
+                });
+            });
+        });
+
+        // ===== PROJECT MODAL =====
+        const projectInfo = {
+            ecommerce: {
+                title: 'Dynamic E-Commerce System',
+                text: 'A dynamic online store built with HTML, CSS, JavaScript and PHP. Features include a product catalogue, a working shopping cart, and a MySQL database for products and orders.'
+            },
+            dashboard: {
+                title: 'Analytics Admin UI',
+                text: 'A modern dark-themed analytics dashboard with neon accents, glassmorphism cards, charts, and a responsive sidebar. Designed for clarity and fast reading of data.'
+            },
+            student: {
+                title: 'Student Record Engine',
+                text: 'A console-based student management system written in C++ / Java. It demonstrates object-oriented programming, file handling, and storing and searching student records.'
+            },
+            video: {
+                title: 'Commercial Promo Video',
+                text: 'A high-energy promotional video with audio sync, colour grading, motion graphics, and visual effects, edited for social media and advertising.'
+            },
+            office: {
+                title: 'Corporate Operational Workflow',
+                text: 'A structured administrative workflow for tracking staff records, daily tasks, documentation, and office logistics, using MS Office tools.'
+            },
+            branding: {
+                title: 'Social Media Branding Pack',
+                text: 'A complete branding kit with custom logo, post templates, banners, and flyers so a brand looks consistent across all social media platforms.'
+            }
+        };
+
+        function openModal(key) {
+            const info = projectInfo[key];
+            document.getElementById('modal-title').innerText = info.title;
+            document.getElementById('modal-details').innerText = info.text;
+            document.getElementById('project-modal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('project-modal').style.display = 'none';
+        }
+        document.getElementById('project-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'project-modal') closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ===== CONTACT FORM (email app kholta hai) =====
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const body = 'Name: ' + name + '\nEmail: ' + email + '\n\n' + message;
+            window.location.href = 'mailto:twasalzahra@gmail.com?subject=' +
+                encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        });
+
+        // ===== SCROLL: progress bar, back-to-top, active menu =====
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.navbar a');
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('scroll-progress').style.width = (winScroll / height) * 100 + '%';
+
+            const backToTop = document.getElementById('backToTop');
+            if (winScroll > 300) backToTop.classList.add('show');
+            else backToTop.classList.remove('show');
+
+            let current = 'home';
+            sections.forEach(sec => {
+                if (winScroll >= sec.offsetTop - 160) current = sec.id;
+            });
+            navLinks.forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+            });
+        });
+
+        // ===== CUSTOM CURSOR =====
+        (function () {
+            if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+            const dot = document.querySelector('.cursor-dot');
+            const ring = document.querySelector('.cursor-ring');
+            let mouseX = -100, mouseY = -100, ringX = -100, ringY = -100;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                dot.style.left = mouseX + 'px';
+                dot.style.top = mouseY + 'px';
+            });
+
+            function animateRing() {
+                ringX += (mouseX - ringX) * 0.15;
+                ringY += (mouseY - ringY) * 0.15;
+                ring.style.left = ringX + 'px';
+                ring.style.top = ringY + 'px';
+                requestAnimationFrame(animateRing);
+            }
+            animateRing();
+
+            const hoverTargets = 'a, button, .tab-btn, .filter-btn, .faq-question, .view-btn';
+            document.addEventListener('mouseover', (e) => {
+                if (e.target.closest(hoverTargets)) ring.classList.add('hover');
+            });
+            document.addEventListener('mouseout', (e) => {
+                if (e.target.closest(hoverTargets)) ring.classList.remove('hover');
+            });
+        })();
+    </script>
+</body>
+</html>
